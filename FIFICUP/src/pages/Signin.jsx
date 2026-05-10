@@ -2,11 +2,10 @@ import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 
-const SignUp = () => {
+const Signin = () => {
   const navigate = useNavigate()
 
   const [form, setForm] = useState({
-    name: "",
     email: "",
     password: "",
   })
@@ -19,33 +18,27 @@ const SignUp = () => {
     e.preventDefault()
 
     const response = await axios.post(
-      "http://localhost:3229/auth/signup",
+      "http://localhost:3229/auth/signin",
       form
     )
 
-    if (response.status === 201) {
-      alert("Account created successfully")
-      navigate("/signin")
+    if (response.status === 200) {
+      localStorage.setItem("token", response.data.token)
+
+      alert("Signed in successfully")
+
+      navigate("/")
     } else {
-      alert("Sign up failed")
+      alert("Sign in failed")
     }
   }
 
   return (
     <section className="page-section">
       <div className="auth-box">
-        <h1>Sign Up</h1>
+        <h1>Sign In</h1>
 
         <form onSubmit={handleSubmit} className="donation-form">
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-
           <input
             type="email"
             name="email"
@@ -65,16 +58,16 @@ const SignUp = () => {
           />
 
           <button type="submit" className="main-btn">
-            Create Account
+            Sign In
           </button>
         </form>
 
         <p className="auth-text">
-          Already have an account? <Link to="/signin">Sign In</Link>
+          Don’t have an account? <Link to="/signup">Sign Up</Link>
         </p>
       </div>
     </section>
   )
 }
 
-export default SignUp
+export default Signin

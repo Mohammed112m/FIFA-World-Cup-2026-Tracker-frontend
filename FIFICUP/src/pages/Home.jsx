@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import logoImage from '../assets/logoImage.png'
+import logoImage from "../assets/logoImage.png"
 
 {
   /* ////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -8,7 +8,7 @@ import logoImage from '../assets/logoImage.png'
 const Home = () => {
   return (
     <main className="home-page">
-{/* 
+      {/*
 
 backgroundImage خلفية لمربع hero
 linear-gradient(
@@ -20,13 +20,15 @@ url(${logoImage})
 هذي حق الصورة
  */}
 
-
-      <section className="hero" style= {{backgroundImage :`linear-gradient(
+      <section
+        className="hero"
+        style={{
+          backgroundImage: `linear-gradient(
       rgba(0,0,0,0.6),
       rgba(0,0,0,0.6)
-    ), url(${logoImage})`, }}>
-
-
+    ), url(${logoImage})`,
+        }}
+      >
         <div className="hero-content">
           <p className="hero-p"> FIFA World Cup 2026 </p>
 
@@ -38,10 +40,15 @@ url(${logoImage})
           </p>
 
           <div className="hero-buttons">
-            <Link to="/matches" className="btn first"> View Matches </Link>
+            <Link to="/matches" className="btn first">
+              {" "}
+              View Matches{" "}
+            </Link>
 
-            <Link to="/signup" className="btn second"> Get Started  </Link>
-
+            <Link to="/signup" className="btn second">
+              {" "}
+              Get Started{" "}
+            </Link>
           </div>
         </div>
       </section>
@@ -86,7 +93,10 @@ url(${logoImage})
                   href="https://maps.app.goo.gl/9ok7Lbzkogm88Tr29"
                   target="_blank"
                   rel="noreferrer"
-                > View Location </a>
+                >
+                  {" "}
+                  View Location{" "}
+                </a>
                 <button> View Details </button>
               </div>
               {/* ////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -98,7 +108,11 @@ url(${logoImage})
                 <a
                   href="https://maps.app.goo.gl/Lk99dy57WD2fvqyo7"
                   target="_blank"
-                  rel="noreferrer" > View Location </a>
+                  rel="noreferrer"
+                >
+                  {" "}
+                  View Location{" "}
+                </a>
                 <button> View Details </button>
               </div>
 
@@ -110,13 +124,67 @@ url(${logoImage})
                   href="https://maps.app.goo.gl/ixroYxuUN4f87hb86"
                   target="_blank" // this is very helpful we doit for when user click the view location he open new page not same page
                   rel="noreferrer" // this is for security   ist very important when we use target .. this
-                > View Location </a>
+                >
+                  {" "}
+                  View Location{" "}
+                </a>
                 <button> View Details </button>
               </div>
             </div>
           </section>
 
           {/* ////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          <section className="explore-section">
+            <h2> Explore World Cup 2026 </h2>
+
+            <div className="explore-grid">
+              <Link to="/Matches" className="explore-card">
+                <h3>⚽ Matches</h3>
+                <p> View upcoming matches and match details.</p>
+              </Link>
+
+              <Link to="/Stadiums" className="explore-card">
+                <h3> 🏟️ Stadiums </h3>
+                <p> Discover stadiums, cities, and capacities. </p>
+              </Link>
+
+              <Link to="/teams" className="explore-card">
+                <h3> Teams </h3>
+                <p> Explore teams, Flags, Coaches, and Groups.</p>
+              </Link>
+
+              <Link to='/events' className="explore-card">
+              <h3>🎉 Events </h3>
+              <p> Find match and city events during the tournament</p>
+              </Link>
+            </div>
+          </section>
+
+ {/* ////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
+<section className="rules-section">
+  <h2> New Rules in FIFA World Cup 2026 </h2>
+
+  <div className="rules-grid">
+    <div className="rule-card">
+        <h3> 🌍 48 Teams </h3>
+        <p>  For the first time, the tournament will include 48 national teams.</p>
+      </div>
+
+    </div>
+    <div className="rule-card">
+        <h3> 🏆 New Format</h3>
+        <p> Teams will compete in 12 groups, with more matches than previous editions.</p>
+    </div>
+
+    <div className="rule-card">
+        <h3>🌎 Three Host Nations </h3>
+        <p>  The World Cup 2026 will be hosted by Canada, Mexico, and the United States.</p>
+      </div>
+
+</section>
+
+ {/* ////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
         </div>
       </section>
