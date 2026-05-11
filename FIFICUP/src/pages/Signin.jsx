@@ -25,7 +25,7 @@ const Signin = () => {
     if (response.status === 200) {
       localStorage.setItem("token", response.data.token)
 
-      alert("Signed in successfully")
+      // alert("Signed in successfully")
 
       navigate("/")
     } else {

@@ -22,7 +22,6 @@ const Navbar = () => {
             className="logout-btn"
             onClick={() => {
               localStorage.removeItem("token")
-              window.location.reload()
             }}
           >
             Sign Out
@@ -31,9 +30,9 @@ const Navbar = () => {
           <>
             <Link to="/signin">Sign In</Link>
 
-            <Link to="/signup" className="signup-btn">
+            {/* <Link to="/signup" className="signup-btn">
               Signup
-            </Link>
+            </Link> */}
           </>
         )}
       </div>

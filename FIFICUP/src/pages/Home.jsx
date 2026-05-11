@@ -157,32 +157,17 @@ url(${logoImage})
               <h3>🎉 Events </h3>
               <p> Find match and city events during the tournament</p>
               </Link>
+
+
+              <Link to='/rules' className="explore-card">
+              <h3> ⚽Rules </h3>
+              <p>Find new Rules For FIFA 2026 </p>
+              </Link>
             </div>
           </section>
 
  {/* ////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-<section className="rules-section">
-  <h2> New Rules in FIFA World Cup 2026 </h2>
-
-  <div className="rules-grid">
-    <div className="rule-card">
-        <h3> 🌍 48 Teams </h3>
-        <p>  For the first time, the tournament will include 48 national teams.</p>
-      </div>
-
-    </div>
-    <div className="rule-card">
-        <h3> 🏆 New Format</h3>
-        <p> Teams will compete in 12 groups, with more matches than previous editions.</p>
-    </div>
-
-    <div className="rule-card">
-        <h3>🌎 Three Host Nations </h3>
-        <p>  The World Cup 2026 will be hosted by Canada, Mexico, and the United States.</p>
-      </div>
-
-</section>
 
  {/* ////////////////////////////////////////////////////////////////////////////////////////////////// */}
 

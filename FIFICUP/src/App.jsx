@@ -12,8 +12,14 @@ import Admin from "./pages/Admin"
 import Stadiums from "./pages/Stadiums"
 import Events from "./pages/Events"
 import CommunityChat from "./pages/CommunityChat"
+import Rules from "./pages/Rules"
 
-function App() {
+const  App =()=> {
+
+  // const signOut =()=>{
+  //   localStorage.removeItem('token')
+  //   setUser(null)
+  // }
   return (
     <BrowserRouter>
       <Navbar />
@@ -27,7 +33,7 @@ function App() {
         <Route path="/matches" element={<Matches />} />
 
         <Route path="/admin" element={<Admin />} />
-        
+
         <Route path="/teams" element={<Teams />} />
 
         <Route path="/stadiums" element={<Stadiums />} />
@@ -35,6 +41,8 @@ function App() {
         <Route path="/events" element={<Events />} />
 
         <Route path="/chat" element={<CommunityChat />} />
+
+        <Route path='/rules' element={<Rules/>}/>
 
       </Routes>
       <Footer />
