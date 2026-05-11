@@ -45,10 +45,6 @@ url(${logoImage})
               View Matches{" "}
             </Link>
 
-            <Link to="/signup" className="btn second">
-              {" "}
-              Get Started{" "}
-            </Link>
           </div>
         </div>
       </section>

@@ -2,7 +2,9 @@ import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 
-const Signin = () => {
+///////////////////////////////////////////////
+
+const Signin = ({ setUser }) => {
   const navigate = useNavigate()
 
   const [form, setForm] = useState({
@@ -17,19 +19,26 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await axios.post(
-      "http://localhost:3229/auth/signin",
-      form
-    )
+    try {
+      const response = await axios.post(
+        "http://localhost:3229/auth/signin",
+        form
+      )
 
-    if (response.status === 200) {
-      localStorage.setItem("token", response.data.token)
+      localStorage.setItem (
+        "token", response.data.token
+      )
 
-      // alert("Signed in successfully")
+      localStorage.setItem (
+        "user", JSON.stringify (
+        response.data.user
+      ))
+
+      setUser(response.data.user)
 
       navigate("/")
-    } else {
-      alert("Sign in failed")
+    } catch (error) {
+      alert(" Email or Password is Wrong ")
     }
   }
 

@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 
+/////////////////////////////////////////////
+
 const SignUp = () => {
   const navigate = useNavigate()
 
@@ -18,15 +20,17 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await axios.post(
-      "http://localhost:3229/auth/signup",
-      form
-    )
+    try {
+      const response = await axios.post(
+        "http://localhost:3229/auth/signup",
+        form
+      )
 
-    if (response.status === 201) {
-      alert("Account created successfully")
-      navigate("/signin")
-    } else {
+      if (response.status === 201) {
+        alert("Account created successfully")
+        navigate("/signin")
+      }
+    } catch (error) {
       alert("Sign up failed")
     }
   }
