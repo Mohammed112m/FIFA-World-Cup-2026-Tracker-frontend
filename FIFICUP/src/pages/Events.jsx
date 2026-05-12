@@ -77,8 +77,6 @@ const Events = () => {
     getEvents()
   }
 
-  ////////////////////////////////////
-
   return (
     <main className="page-container">
       <h1>Events</h1>
