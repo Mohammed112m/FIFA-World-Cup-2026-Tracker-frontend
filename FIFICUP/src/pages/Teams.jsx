@@ -34,7 +34,7 @@ const Teams = () => {
 
     setForm({
       name: team.name,
-      coach: team.team,
+      coach: team.coach,
       players: team.players,
       country: team.country,
       flag: team.flag,
@@ -70,46 +70,26 @@ const Teams = () => {
         <form className="admin-form" onSubmit={updateTeam}>
           <h2> Edit Teams </h2>
 
-          <input
-          name="name"
-          value={form.name}
-          onChange={handleChange}/>
+          <input name="name" value={form.name} onChange={handleChange} />
 
-          <input
-          name="coach"
-          value={form.coach}
-          onChange={handleChange}/>
+          <input name="coach" value={form.coach} onChange={handleChange} />
 
-          <input
-          name="players"
-          value={form.players}
-          onChange={handleChange}/>
+          <input name="players" value={form.players} onChange={handleChange} />
 
-          <input
-          name="country"
-          value={form.country}
-          onChange={handleChange}/>
+          <input name="country" value={form.country} onChange={handleChange} />
 
-          <input
-          name="flag"
-          value={form.value}
-          onChange={handleChange}/>
+          <input name="flag" value={form.flag} onChange={handleChange} />
 
-          <input
-          name="groups"
-          value={form.groups}
-          onChange={handleChange}/>
+          <input name="groups" value={form.groups} onChange={handleChange} />
 
-          <button type ='submit'>Save Update</button>
-
-          </form>
+          <button type="submit">Save Update</button>
+        </form>
       )}
 
-
-      <div className="'c-grid">
+      <div className="c-grid">
         {teams.map((team) => (
           <div className="s-card" key={team._id}>
-            <img src={team.flag} alt={team.name} />
+            {team.flag && <img src={team.flag} alt={team.name} />}
 
             <h2> {team.name} </h2>
 
@@ -121,15 +101,13 @@ const Teams = () => {
 
             <p> Group: {team.groups}</p>
 
+            {user?.isAdmin && (
+              <div className="team-actions">
+                <button onClick={() => startEdit(team)}>Edit</button>
 
-          {user?.isAdmin && (
-            <div className="team-actions">
-            <button onClick={()=> startEdit (team)}>Edit</button>
-
-            <button onClick={()=> deleteTeam(team._id)}>Delete</button>
-
-            </div>
-          )}
+                <button onClick={() => deleteTeam(team._id)}>Delete</button>
+              </div>
+            )}
           </div>
         ))}
       </div>

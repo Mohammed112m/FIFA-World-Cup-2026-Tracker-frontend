@@ -5,6 +5,7 @@ import axios from "axios"
 
 const Matches = () => {
   const [matches, setMatches] = useState([])
+  const [events, setEvents] = useState([])
   const user = JSON.parse(localStorage.getItem("user"))
   const [editId, setEditId] = useState(null)
 
@@ -19,6 +20,7 @@ const Matches = () => {
 
   useEffect(() => {
     getMatches()
+    getEvents()
   }, [])
 
   ////////////////////////////////////
@@ -30,9 +32,15 @@ const Matches = () => {
 
   ////////////////////////////////////
 
+  const getEvents = async () => {
+    const response = await axios.get("http://localhost:3229/event")
+    setEvents(response.data)
+  }
+  ////////////////////////////////////
+
   const deleteMatch = async (id) => {
     await axios.delete(`http://localhost:3229/match/${id}`)
-    getMatches
+    getMatches()
   }
 
   ////////////////////////////////////
@@ -43,9 +51,9 @@ const Matches = () => {
       name: match.name,
       date: match.date ? match.date.slice(0, 10) : "",
       time: match.time,
-      team1: match.team1,
-      team2: match.team2,
-      stadium: match.stadium,
+      team1: match.team1?._id || match.team1,
+      team2: match.team2?._id || match.team2,
+      stadium: match.stadium?._id || match.stadium,
     })
   }
 
@@ -104,25 +112,67 @@ const Matches = () => {
       )}
 
       <div className="cards-grid">
-        {matches.map((match) => (
-          <div className="simple-card" key={match._id}>
-            <h2>{match.name}</h2>
-            <p>📅 {new Date(match.date).toLocaleDateString()}</p>
-            <p>⏰ {match.time}</p>
-            <p>
-              ⚽ {match.team1?.name} vs {match.team2?.name}
-            </p>
-            <p>🏟 {match.stadium?.name}</p>
+        {matches.map((match) => {
+          const matchEvents = events.filter(
+            (event) =>
+              event.match?._id === match._id || event.match === match._id
+          )
+          return (
+            <div className="simple-card" key={match._id}>
+              <h2>{match.name}</h2>
 
-            {user?.isAdmin && (
-              <div className="match-actions">
-                <button onClick={() => startEdit(match)}>Edit</button>
+              <p> {new Date(match.date).toLocaleDateString()}</p>
 
-                <button onClick={() => deleteMatch(match._id)}>Delete</button>
-              </div>
-            )}
-          </div>
-        ))}
+              <p> {match.time}</p>
+
+              <p>
+                {match.team1?.name} vs {match.team2?.name}{" "}
+              </p>
+
+              <p>{match.stadium?.name}</p>
+
+              {match.stadium?.location && (
+                <a
+                  href={match.stadium.location}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Stadium Location
+                </a>
+              )}
+
+              {matchEvents.length > 0 && (
+                <div className="match-events">
+                  <h4>Match Events</h4>
+
+                  {matchEvents.map((event) => (
+                    <div className="match-event-card" key={event._id}>
+                      <p>{event.name}</p>
+
+                      {event.location && (
+                        <a
+                          href={event.location}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          View Event Location
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {user?.isAdmin && (
+                <div className="match-actions">
+                  <button onClick={() => startEdit(match)}>Edit</button>
+
+                  <button onClick={() => deleteMatch(match._id)}>Delete</button>
+                </div>
+              )}
+            </div>
+          )
+        })}
       </div>
     </main>
   )

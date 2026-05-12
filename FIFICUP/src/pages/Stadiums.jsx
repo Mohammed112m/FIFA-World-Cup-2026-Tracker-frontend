@@ -60,7 +60,7 @@ const Stadiums = () => {
       city: stadium.city,
       capacity: stadium.capacity,
       image: stadium.image,
-      location: stadium.Stadium,
+      location: stadium.location,
     })
   }
 
@@ -105,7 +105,7 @@ const Stadiums = () => {
       <div className="c-grid">
         {stadiums.map((stadium) => (
           <div className="s-card" key={stadium._id}>
-            <img src={stadium.image} alt={stadium._id} />
+            {stadium.image && <img src={stadium.image} alt={stadium.name} />}
 
             <h2> {stadium.name} </h2>
 
@@ -120,7 +120,7 @@ const Stadiums = () => {
             </a>
 
             {user?.isAdmin && (
-              <div className="'stadium-actions">
+              <div className="stadium-actions">
                 <button onClick={() => startEdit(stadium)}>Edit</button>
 
                 <button onClick={() => deleteStadium(stadium._id)}>

@@ -20,6 +20,94 @@
   }
 
 }
+.groups-section {
+  padding: 70px 8%;
+  background: #f5f7fb;
+  text-align: center;
+}
+
+.section-tag {
+  color: #0b666a;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.groups-section h2 {
+  font-size: 36px;
+  color: #071952;
+  margin-bottom: 12px;
+}
+
+.groups-intro {
+  max-width: 750px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+  color: #555;
+}
+
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.group-card {
+  background: white;
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.09);
+  transition: 0.3s;
+  text-align: left;
+}
+
+.group-card:hover {
+  transform: translateY(-8px);
+}
+
+.group-header h3 {
+  color: #071952;
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.group-header p {
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.group-teams {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.group-team {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f5f7fb;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-weight: bold;
+  color: #071952;
+}
+
+.group-flag {
+  width: 28px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.lang-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
 /*
 .home-page {
   min-height: 100vh;
@@ -104,6 +192,24 @@
 
 .info-card h3 {
   color: #071952;
+
+  .navbar-search {
+  display: flex;
+  gap: 6px;
+}
+
+.navbar-search input {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+}
+
+.navbar-search button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 } */
 
 /* . this is for matches section in home page */

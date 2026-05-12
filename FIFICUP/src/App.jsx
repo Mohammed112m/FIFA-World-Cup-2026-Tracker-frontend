@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import { useState } from "react"
+
+import { useEffect, useState } from "react"
 
 import Home from "./pages/Home"
 import Signin from "./pages/Signin"
@@ -14,16 +15,28 @@ import Events from "./pages/Events"
 import CommunityChat from "./pages/CommunityChat"
 import Rules from "./pages/Rules"
 
+///////////////////////////////////////
+
 const App = () => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   )
-
+  ///////////////////////////////////////
   const signOut = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("user")
     setUser(null)
   }
+  ///////////////////////////////////////
+  const [language, setLanguage] = useState(
+    localStorage.getItem("language") || "en"
+  )
+  useEffect(() => {
+    localStorage.setItem("language", language)
+    document.body.dir = language === "ar" ? "rtl" : "ltr"
+  }, [language])
+
+  ///////////////////////////////////////
 
   const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem("token")
@@ -34,37 +47,42 @@ const App = () => {
 
     return children
   }
-
+  ///////////////////////////////////////
   const AdminRoute = ({ children }) => {
     const token = localStorage.getItem("token")
-
     if (!token) {
       return <Navigate to="/signin" />
     }
-
     if (!user?.isAdmin) {
       return <Navigate to="/" />
     }
-
     return children
   }
-
+  ///////////////////////////////////////
   return (
     <BrowserRouter>
-      <Navbar user={user} signOut={signOut} />
+      <Navbar
+        user={user}
+        signOut={signOut}
+        language={language}
+        setLanguage={setLanguage}
+      />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home language={language} />} />
 
-        <Route path="/signin" element={<Signin setUser={setUser} />} />
+        <Route
+          path="/signin"
+          element={<Signin setUser={setUser} language={language} />}
+        />
 
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup language={language} />} />
 
         <Route
           path="/matches"
           element={
             <ProtectedRoute>
-              <Matches />
+              <Matches language={language} />
             </ProtectedRoute>
           }
         />
@@ -73,7 +91,7 @@ const App = () => {
           path="/teams"
           element={
             <ProtectedRoute>
-              <Teams />
+              <Teams language={language} />
             </ProtectedRoute>
           }
         />
@@ -82,7 +100,7 @@ const App = () => {
           path="/stadiums"
           element={
             <ProtectedRoute>
-              <Stadiums />
+              <Stadiums language={language} />
             </ProtectedRoute>
           }
         />
@@ -91,7 +109,7 @@ const App = () => {
           path="/events"
           element={
             <ProtectedRoute>
-              <Events />
+              <Events language={language} />
             </ProtectedRoute>
           }
         />
@@ -100,7 +118,7 @@ const App = () => {
           path="/chat"
           element={
             <ProtectedRoute>
-              <CommunityChat />
+              <CommunityChat language={language} />
             </ProtectedRoute>
           }
         />
@@ -109,7 +127,7 @@ const App = () => {
           path="/rules"
           element={
             <ProtectedRoute>
-              <Rules />
+              <Rules language={language} />
             </ProtectedRoute>
           }
         />
@@ -118,13 +136,13 @@ const App = () => {
           path="/admin"
           element={
             <AdminRoute>
-              <Admin />
+              <Admin language={language} />
             </AdminRoute>
           }
         />
       </Routes>
 
-      <Footer />
+      <Footer language={language} />
     </BrowserRouter>
   )
 }

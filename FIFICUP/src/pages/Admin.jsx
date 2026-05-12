@@ -111,8 +111,10 @@ const AddMatch = () => {
         onChange={handleChange}
       />
 
-      <select name="team1" onChange={handleChange}>
-        value={form.team1}
+      <select
+      name="team1"
+      value={form.team1}
+      onChange={handleChange}>
         <option>Select Team 1</option>
         {teams.map((team) => (
           <option key={team._id} value={team._id}>
@@ -121,8 +123,9 @@ const AddMatch = () => {
         ))}
       </select>
 
-      <select name="team2" onChange={handleChange}>
-        value={form.team2}
+      <select name="team2"
+      value={form.team2}
+      onChange={handleChange}>
         <option>Select Team 2</option>
         {teams.map((team) => (
           <option key={team._id} value={team._id}>
@@ -131,8 +134,9 @@ const AddMatch = () => {
         ))}
       </select>
 
-      <select name="stadium" onChange={handleChange}>
-        value={form.stadium}
+      <select name="stadium"
+      value={form.stadium}
+      onChange={handleChange}>
         <option>Select Stadium</option>
         {stadiums.map((stadium) => (
           <option key={stadium._id} value={stadium._id}>
