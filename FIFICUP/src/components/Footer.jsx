@@ -1,4 +1,8 @@
 import { FaInstagram, FaWhatsapp, FaTiktok } from 'react-icons/fa'
+
+
+///////////////////////////////////////
+
 const Footer=()=>{
   return (
     <footer className="footer">

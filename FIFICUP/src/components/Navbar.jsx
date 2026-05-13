@@ -1,60 +1,54 @@
 import { Link, useNavigate } from "react-router-dom"
-import languageData from "../language"
+
+
 
 ///////////////////////////////////////////////////
 
-const Navbar = ({ user, signOut, language, setLanguage }) => {
+const Navbar = ({ user, signOut }) => {
   const navigate = useNavigate()
-  const t = languageData[language]
 
-  /////////////////////////////////////////////
   const handleSignOut = () => {
     signOut()
     navigate("/signin")
   }
 
-  /////////////////////////////////////////////
+/////////////////////////////////////////////
 
   return (
+
     <nav className="navbar">
       <h2>FIFA 2026</h2>
 
       <div className="nav-links">
-        <Link to="/">{t.home}</Link>
-
+        <Link to="/">Home</Link>
         {user && (
           <>
-            <Link to="/teams">{t.teams}</Link>
-            <Link to="/matches">{t.matches}</Link>
-            <Link to="/stadiums">{t.stadiums}</Link>
-            <Link to="/events">{t.events}</Link>
-            <Link to="/chat">{t.chat}</Link>
-            <Link to="/rules">{t.rules}</Link>
 
-            {user.isAdmin && <Link to="/admin">{t.admin}</Link>}
+            <Link to="/teams">Teams</Link>
+            <Link to="/matches">Matches</Link>
+            <Link to="/stadiums">Stadiums</Link>
+            <Link to="/events">Events</Link>
+            <Link to="/chat">Chat</Link>
+            <Link to="/rules">Rules</Link>
+
+            {user.isAdmin && <Link to="/admin">Admin</Link>}
 
             <button className="logout-btn" onClick={handleSignOut}>
-              {t.signOut}
+              Sign Out
             </button>
           </>
         )}
 
         {!user && (
           <>
-            <Link to="/signin">{t.signIn}</Link>
-            <Link to="/signup">{t.signUp}</Link>
+            <Link to="/signin">Sign In</Link>
+            <Link to="/signup">Get Started</Link>
           </>
         )}
-
-        <button
-          className="lang-btn"
-          onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-        >
-          {language === "en" ? t.arabic : t.english}
-        </button>
       </div>
     </nav>
   )
 }
+
 
 export default Navbar

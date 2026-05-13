@@ -16,7 +16,6 @@ import CommunityChat from "./pages/CommunityChat"
 import Rules from "./pages/Rules"
 
 ///////////////////////////////////////
-
 const App = () => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
@@ -27,29 +26,19 @@ const App = () => {
     localStorage.removeItem("user")
     setUser(null)
   }
-  ///////////////////////////////////////
-  const [language, setLanguage] = useState(
-    localStorage.getItem("language") || "en"
-  )
-  useEffect(() => {
-    localStorage.setItem("language", language)
-    document.body.dir = language === "ar" ? "rtl" : "ltr"
-  }, [language])
-
-  ///////////////////////////////////////
-
+///////////////////////////////////////
   const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem("token")
 
     if (!token) {
       return <Navigate to="/signin" />
     }
-
     return children
   }
-  ///////////////////////////////////////
+///////////////////////////////////////
   const AdminRoute = ({ children }) => {
     const token = localStorage.getItem("token")
+
     if (!token) {
       return <Navigate to="/signin" />
     }
@@ -58,31 +47,23 @@ const App = () => {
     }
     return children
   }
-  ///////////////////////////////////////
+///////////////////////////////////////
   return (
     <BrowserRouter>
-      <Navbar
-        user={user}
-        signOut={signOut}
-        language={language}
-        setLanguage={setLanguage}
-      />
+      <Navbar user={user} signOut={signOut} />
 
       <Routes>
-        <Route path="/" element={<Home language={language} />} />
+        <Route path="/" element={<Home />} />
 
-        <Route
-          path="/signin"
-          element={<Signin setUser={setUser} language={language} />}
-        />
+        <Route path="/signin" element={<Signin setUser={setUser} />} />
 
-        <Route path="/signup" element={<Signup language={language} />} />
+        <Route path="/signup" element={<Signup />} />
 
         <Route
           path="/matches"
           element={
             <ProtectedRoute>
-              <Matches language={language} />
+              <Matches />
             </ProtectedRoute>
           }
         />
@@ -91,7 +72,7 @@ const App = () => {
           path="/teams"
           element={
             <ProtectedRoute>
-              <Teams language={language} />
+              <Teams />
             </ProtectedRoute>
           }
         />
@@ -100,7 +81,7 @@ const App = () => {
           path="/stadiums"
           element={
             <ProtectedRoute>
-              <Stadiums language={language} />
+              <Stadiums />
             </ProtectedRoute>
           }
         />
@@ -109,7 +90,7 @@ const App = () => {
           path="/events"
           element={
             <ProtectedRoute>
-              <Events language={language} />
+              <Events />
             </ProtectedRoute>
           }
         />
@@ -118,7 +99,7 @@ const App = () => {
           path="/chat"
           element={
             <ProtectedRoute>
-              <CommunityChat language={language} />
+              <CommunityChat />
             </ProtectedRoute>
           }
         />
@@ -127,7 +108,7 @@ const App = () => {
           path="/rules"
           element={
             <ProtectedRoute>
-              <Rules language={language} />
+              <Rules />
             </ProtectedRoute>
           }
         />
@@ -136,13 +117,13 @@ const App = () => {
           path="/admin"
           element={
             <AdminRoute>
-              <Admin language={language} />
+              <Admin />
             </AdminRoute>
           }
         />
       </Routes>
 
-      <Footer language={language} />
+      <Footer />
     </BrowserRouter>
   )
 }

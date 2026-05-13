@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
 import logoImage from "../assets/logoImage.png"
 
+
+///////////////////////////////////////
+
 const Home = () => {
   const groupsData = [
     {
@@ -26,7 +29,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "B",
       message:
@@ -50,7 +53,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "C",
       message:
@@ -74,7 +77,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "D",
       message:
@@ -98,7 +101,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "E",
       message:
@@ -122,7 +125,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "F",
       message:
@@ -146,7 +149,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "G",
       message: "Discover the exciting teams competing in Group G.",
@@ -169,7 +172,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "H",
       message: "Explore Group H and follow the teams chasing qualification.",
@@ -192,7 +195,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "I",
       message: "Meet the nations competing in Group I.",
@@ -215,7 +218,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "J",
       message: "Discover the football nations in Group J.",
@@ -238,7 +241,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "K",
       message: "Explore Group K and the teams competing for the next round.",
@@ -261,7 +264,7 @@ const Home = () => {
         },
       ],
     },
-
+///////////////////////////////////////
     {
       group: "L",
       message: "Follow Group L and discover its talented national teams.",
@@ -285,7 +288,7 @@ const Home = () => {
       ],
     },
   ]
-
+///////////////////////////////////////
   return (
     <main className="home-page">
       <section
@@ -380,12 +383,12 @@ const Home = () => {
 
         <div className="explore-grid">
           <Link to="/matches" className="explore-card">
-            <h3>⚽ Matches</h3>
+            <h3> Matches</h3>
             <p>View upcoming matches and match details.</p>
           </Link>
 
           <Link to="/stadiums" className="explore-card">
-            <h3>🏟️ Stadiums</h3>
+            <h3> Stadiums</h3>
             <p>Discover stadiums, cities, and capacities.</p>
           </Link>
 
@@ -395,12 +398,12 @@ const Home = () => {
           </Link>
 
           <Link to="/events" className="explore-card">
-            <h3>🎉 Events</h3>
+            <h3> Events</h3>
             <p>Find match and city events during the tournament.</p>
           </Link>
 
           <Link to="/rules" className="explore-card">
-            <h3>⚽ Rules</h3>
+            <h3> Rules</h3>
             <p>Find new rules for FIFA 2026.</p>
           </Link>
         </div>
